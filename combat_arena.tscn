@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://ubepovnemny5"]
+
+[node name="CombatUI" type="CanvasLayer" unique_id=1798184364]
+
+[node name="ArenaBackground" type="ColorRect" parent="." unique_id=2017356528]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17254902, 0.11764706, 0.08627451, 1)
+
+[node name="PlayerPanel" type="Control" parent="." unique_id=1048618304]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="Portrait" type="TextureRect" parent="PlayerPanel" unique_id=207488373]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NameLabel" type="Label" parent="PlayerPanel" unique_id=28211781]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerPanel" unique_id=672317514]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="VSLabel" type="Label" parent="." unique_id=1658192007]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="EnemyPanel" type="Control" parent="." unique_id=512387398]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Portrait" type="TextureRect" parent="EnemyPanel" unique_id=138487710]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NameLabel" type="Label" parent="EnemyPanel" unique_id=1529372352]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HealthBar" type="ProgressBar" parent="EnemyPanel" unique_id=861014337]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="CombatLog" type="VBoxContainer" parent="." unique_id=222232063]
+offset_right = 40.0
+offset_bottom = 40.0
