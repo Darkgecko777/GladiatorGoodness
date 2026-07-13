@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dgkfa3oe8yvjh"]
+
+[ext_resource type="Texture2D" uid="uid://cxd5amqnw4q47" path="res://art/Health_Bar_Background.png" id="1_6opq1"]
+[ext_resource type="Texture2D" uid="uid://dmasuu46htodv" path="res://art/Health_Bar_Foreground.png" id="2_tujlf"]
+[ext_resource type="Texture2D" uid="uid://bd7p1em8rixsr" path="res://art/Health_Bar_Fill.png" id="3_5oo0i"]
+
+[node name="HealthBar" type="TextureProgressBar" unique_id=1331971018]
+offset_left = -101.0
+offset_top = 92.0
+offset_right = 99.0
+offset_bottom = 132.0
+value = 100.0
+texture_under = ExtResource("1_6opq1")
+texture_over = ExtResource("2_tujlf")
+texture_progress = ExtResource("3_5oo0i")
+texture_progress_offset = Vector2(25, 2)

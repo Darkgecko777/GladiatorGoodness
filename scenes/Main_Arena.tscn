@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://b4hi8ndtv8epn" path="res://art/Arena_Background_02.png" id="1_tjuyb"]
 [ext_resource type="PackedScene" uid="uid://bplj8lyhc41i0" path="res://scenes/player.tscn" id="2_ukgit"]
-[ext_resource type="PackedScene" uid="uid://buxqwo45bq1fw" path="res://scenes/minotaur.tscn" id="3_nunrf"]
 
 [node name="MainArena" type="Control" unique_id=1438345324]
 layout_mode = 3
@@ -36,7 +35,3 @@ grow_vertical = 2
 texture = ExtResource("1_tjuyb")
 
 [node name="Character" parent="MasterPanel" unique_id=645663698 instance=ExtResource("2_ukgit")]
-position = Vector2(512, 703)
-
-[node name="Character2" parent="MasterPanel" unique_id=1247981064 instance=ExtResource("3_nunrf")]
-position = Vector2(1343, 719)

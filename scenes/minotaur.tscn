@@ -3,22 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://daagrfo1cv8dg" path="res://art/Minotaur_Icon.png" id="1_3nv7t"]
 [ext_resource type="Script" uid="uid://j8sesadsnlph" path="res://data/character_token.gd" id="2_an5vr"]
 [ext_resource type="Resource" uid="uid://b7mpngaqunoq5" path="res://resources/minotaur.tres" id="3_an5vr"]
-[ext_resource type="Texture2D" uid="uid://cxd5amqnw4q47" path="res://art/Health_Bar_Background.png" id="4_rgc7s"]
-[ext_resource type="Texture2D" uid="uid://dmasuu46htodv" path="res://art/Health_Bar_Foreground.png" id="5_jmw1r"]
-[ext_resource type="Texture2D" uid="uid://bd7p1em8rixsr" path="res://art/Health_Bar_Fill.png" id="6_rvm00"]
 
 [node name="Character" type="Sprite2D" unique_id=645663698]
 texture = ExtResource("1_3nv7t")
 script = ExtResource("2_an5vr")
 data = ExtResource("3_an5vr")
-
-[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=822718222]
-offset_left = -101.0
-offset_top = 92.0
-offset_right = 99.0
-offset_bottom = 132.0
-value = 100.0
-texture_under = ExtResource("4_rgc7s")
-texture_over = ExtResource("5_jmw1r")
-texture_progress = ExtResource("6_rvm00")
-texture_progress_offset = Vector2(25, 2)

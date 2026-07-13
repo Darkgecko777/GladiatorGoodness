@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://gjkl4nfqosak" path="res://data/ability_data.gd" id="1_1hwg5"]
 [ext_resource type="Script" uid="uid://qciwq1gnmrlp" path="res://data/character_data.gd" id="1_egjmh"]
-[ext_resource type="Texture2D" uid="uid://cryg2cpg337c5" path="res://art/Test_Gladiator.png" id="2_hjlde"]
+[ext_resource type="Texture2D" uid="uid://d1gh1wuwteia1" path="res://art/test_gladiator_full.png" id="2_1hwg5"]
 
 [resource]
 script = ExtResource("1_egjmh")
-portrait = ExtResource("2_hjlde")
+portrait = ExtResource("2_1hwg5")
 abilities = Array[ExtResource("1_1hwg5")]([null])
 metadata/_custom_type_script = "uid://qciwq1gnmrlp"
