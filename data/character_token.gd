@@ -7,12 +7,13 @@ extends Node2D
 var health_bar: TextureProgressBar
 
 func _ready():
-	setup_health_bar()
-	
 	if data:
-		if has_node("Sprite2D"):
-			$Sprite2D.texture = data.portrait
-		update_health_bar()
+		var sprite = get_node_or_null("Sprite2D")
+		if sprite and data.portrait:
+			sprite.texture = data.portrait
+			
+			setup_health_bar()
+			update_health_bar()
 
 func setup_health_bar():
 	if not show_health_bar:
