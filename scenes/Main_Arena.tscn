@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://qcm7fgh8clrd"]
 
 [ext_resource type="Texture2D" uid="uid://b4hi8ndtv8epn" path="res://art/Arena_Background_02.png" id="1_tjuyb"]
-[ext_resource type="PackedScene" uid="uid://buxqwo45bq1fw" path="res://scenes/minotaur.tscn" id="2_gmuxu"]
+[ext_resource type="PackedScene" uid="uid://buxqwo45bq1fw" path="res://scenes/minotaur.tscn" id="2_nunrf"]
+[ext_resource type="PackedScene" uid="uid://bnmbkbmuydwno" path="res://scenes/player_token.tscn" id="3_ajqfm"]
 
 [node name="MainArena" type="Control" unique_id=1438345324]
 layout_mode = 3
@@ -34,5 +35,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_tjuyb")
 
-[node name="Character" parent="MasterPanel" unique_id=645663698 instance=ExtResource("2_gmuxu")]
-position = Vector2(1465, 721)
+[node name="Minotaur" parent="MasterPanel" unique_id=1905505048 instance=ExtResource("2_nunrf")]
+
+[node name="PlayerToken" parent="MasterPanel" unique_id=912288160 instance=ExtResource("3_ajqfm")]

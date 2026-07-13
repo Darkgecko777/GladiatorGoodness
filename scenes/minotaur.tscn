@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://buxqwo45bq1fw"]
 
-[ext_resource type="Texture2D" uid="uid://daagrfo1cv8dg" path="res://art/Minotaur_Icon.png" id="1_3nv7t"]
-[ext_resource type="Script" uid="uid://j8sesadsnlph" path="res://data/character_token.gd" id="2_an5vr"]
-[ext_resource type="Resource" uid="uid://b7mpngaqunoq5" path="res://resources/minotaur.tres" id="3_an5vr"]
+[ext_resource type="Script" uid="uid://j8sesadsnlph" path="res://data/character_token.gd" id="1_umvy0"]
+[ext_resource type="Resource" uid="uid://b7mpngaqunoq5" path="res://resources/minotaur.tres" id="2_4agob"]
 
-[node name="Character" type="Sprite2D" unique_id=645663698]
-texture = ExtResource("1_3nv7t")
-script = ExtResource("2_an5vr")
-data = ExtResource("3_an5vr")
+[node name="Minotaur" type="Node2D" unique_id=1905505048]
+script = ExtResource("1_umvy0")
+data = ExtResource("2_4agob")

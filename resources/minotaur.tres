@@ -8,4 +8,5 @@
 script = ExtResource("2_4sp1y")
 display_name = "Minotaur"
 portrait = ExtResource("2_gc3us")
+is_player = false
 metadata/_custom_type_script = "uid://qciwq1gnmrlp"
