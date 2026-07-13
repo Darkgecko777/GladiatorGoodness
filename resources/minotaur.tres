@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://b7mpngaqunoq5"]
+
+[ext_resource type="Script" uid="uid://gjkl4nfqosak" path="res://data/ability_data.gd" id="1_12m8t"]
+[ext_resource type="Script" uid="uid://qciwq1gnmrlp" path="res://data/character_data.gd" id="2_4sp1y"]
+[ext_resource type="Texture2D" uid="uid://daagrfo1cv8dg" path="res://art/Minotaur_Icon.png" id="2_gc3us"]
+
+[resource]
+script = ExtResource("2_4sp1y")
+display_name = "Minotaur"
+portrait = ExtResource("2_gc3us")
+metadata/_custom_type_script = "uid://qciwq1gnmrlp"
