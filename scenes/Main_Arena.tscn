@@ -36,5 +36,7 @@ grow_vertical = 2
 texture = ExtResource("1_tjuyb")
 
 [node name="Minotaur" parent="MasterPanel" unique_id=1905505048 instance=ExtResource("2_nunrf")]
+position = Vector2(1445, 799)
 
 [node name="PlayerToken" parent="MasterPanel" unique_id=912288160 instance=ExtResource("3_ajqfm")]
+position = Vector2(563, 794)

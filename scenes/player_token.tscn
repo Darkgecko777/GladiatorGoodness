@@ -6,3 +6,5 @@
 [node name="PlayerToken" type="Node2D" unique_id=912288160]
 script = ExtResource("1_nof10")
 data = ExtResource("2_d0d4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=282421157]

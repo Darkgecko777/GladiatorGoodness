@@ -6,3 +6,5 @@
 [node name="Minotaur" type="Node2D" unique_id=1905505048]
 script = ExtResource("1_umvy0")
 data = ExtResource("2_4agob")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=983681440]
