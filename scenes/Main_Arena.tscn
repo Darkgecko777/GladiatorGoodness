@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://qcm7fgh8clrd"]
 
+[ext_resource type="Texture2D" uid="uid://nmfi466wqecn" path="res://art/UI_Panel.png" id="1_ajqfm"]
 [ext_resource type="Texture2D" uid="uid://b4hi8ndtv8epn" path="res://art/Arena_Background_02.png" id="1_tjuyb"]
 [ext_resource type="PackedScene" uid="uid://buxqwo45bq1fw" path="res://scenes/minotaur.tscn" id="2_nunrf"]
 [ext_resource type="PackedScene" uid="uid://bnmbkbmuydwno" path="res://scenes/player_token.tscn" id="3_ajqfm"]
@@ -12,32 +13,85 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MasterPanel" type="Panel" parent="." unique_id=1827072063]
+[node name="MainLayout" type="HBoxContainer" parent="." unique_id=1662501004]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="MasterPanel" unique_id=653369313]
+[node name="LeftPanel" type="Panel" parent="MainLayout" unique_id=951869545]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainLayout/LeftPanel" unique_id=241623535]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ajqfm")
+expand_mode = 1
+
+[node name="RightColumn" type="VBoxContainer" parent="MainLayout" unique_id=4140276]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+theme_override_constants/separation = 0
+
+[node name="ArenaViewport" type="Panel" parent="MainLayout/RightColumn" unique_id=1634993623]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainLayout/RightColumn/ArenaViewport" unique_id=653369313]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_tjuyb")
+expand_mode = 1
 
-[node name="Minotaur" parent="MasterPanel" unique_id=1905505048 instance=ExtResource("2_nunrf")]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/RightColumn" unique_id=1220414770]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="PlayerUI" type="Panel" parent="MainLayout/RightColumn/HBoxContainer" unique_id=1239415741]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainLayout/RightColumn/HBoxContainer/PlayerUI" unique_id=769143218]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ajqfm")
+expand_mode = 1
+
+[node name="MonsterUI" type="Panel" parent="MainLayout/RightColumn/HBoxContainer" unique_id=1604048177]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainLayout/RightColumn/HBoxContainer/MonsterUI" unique_id=928021355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ajqfm")
+expand_mode = 1
+
+[node name="Minotaur" parent="MainLayout" unique_id=1905505048 instance=ExtResource("2_nunrf")]
 position = Vector2(1445, 799)
 
-[node name="PlayerToken" parent="MasterPanel" unique_id=912288160 instance=ExtResource("3_ajqfm")]
+[node name="PlayerToken" parent="MainLayout" unique_id=912288160 instance=ExtResource("3_ajqfm")]
 position = Vector2(563, 794)
 is_player_controlled = true
