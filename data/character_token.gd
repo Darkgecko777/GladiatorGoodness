@@ -70,11 +70,12 @@ func perform_auto_attack():
 
 func find_target() -> CharacterToken:
 	var parent = get_parent()
-	if is_player_controlled:
-		return parent.get_node_or_null("Minotaur") as CharacterToken
-	else:
-		return parent.get_node_or_null("PlayerToken") as CharacterToken
-
+	for child in parent.get_children():
+		if child is CharacterToken and child != self:
+			return child
+	return null
+	
+	
 func animate_attack():
 	if not sprite:
 		return
