@@ -88,7 +88,7 @@ func take_damage(amount: int):
 	if data:
 		data.take_damage(amount)
 		if not data.is_alive:
-			print(data.display_name + " has been defeated!")
+			print(data.get_display_name() + " has been defeated!")
 
 func _on_health_changed(new_health: int) -> void:
 	pass # Replace with function body.
