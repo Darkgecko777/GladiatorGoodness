@@ -6,9 +6,6 @@ signal health_changed(new_health: int)
 @export var data: CharacterData
 @export var is_player_controlled: bool = false  # NEW: Use this instead of data.is_player
 
-@export var show_health_bar: bool = true
-
-var health_bar: TextureProgressBar
 var sprite: Sprite2D
 var attack_sound_player: AudioStreamPlayer
 
@@ -17,16 +14,14 @@ var abilities: Array[Ability] = []
 func _ready():
 	sprite = get_node_or_null("Sprite2D")
 	
-	if data and sprite and data.portrait:
-		sprite.texture = data.portrait
-	
-	setup_health_bar()
+	if data:
+		if sprite and data.definition and data.definition.sprite_texture:
+			sprite.texture = data.definition.sprite_texture
+		data.reset_for_battle()
+		data.health_changed.connect(_on_health_changed)
+		
 	setup_sound_player()
 	initialize_abilities()
-	
-	if data:
-		data.reset_for_battle()
-		data.health_changed.connect(_forward_health_changed)
 
 func _process(delta: float):
 	if not data or not data.is_alive:
@@ -37,28 +32,6 @@ func _process(delta: float):
 	
 	if can_auto_attack():
 		perform_auto_attack()
-
-func setup_health_bar():
-	if not show_health_bar:
-		return
-	
-	if has_node("HealthBar"):
-		health_bar = $HealthBar
-	else:
-		var health_bar_scene = preload("res://ui/HealthBar.tscn")
-		health_bar = health_bar_scene.instantiate()
-		health_bar.name = "HealthBar"
-		add_child(health_bar)
-		
-		if sprite:
-			health_bar.position = Vector2(0, -sprite.texture.get_height() / 2 - 20)
-
-func update_health_bar():
-	if health_bar and data:
-		health_bar.max_value = data.max_health
-		health_bar.value = data.current_health
-	else:
-		print("HealthBar not ready for ", name)
 
 func setup_sound_player():
 	attack_sound_player = AudioStreamPlayer.new()
@@ -93,7 +66,6 @@ func perform_auto_attack():
 	for ability in abilities:
 		if ability.is_ready():
 			ability.use(self, target)
-			update_health_bar()
 			return
 
 func find_target() -> CharacterToken:
@@ -114,13 +86,8 @@ func animate_attack():
 func take_damage(amount: int):
 	if data:
 		data.take_damage(amount)
-		update_health_bar()
 		if not data.is_alive:
 			print(data.display_name + " has been defeated!")
-
-func _forward_health_changed(new_health: int):
-	health_changed.emit(new_health)
-
 
 func _on_health_changed(new_health: int) -> void:
 	pass # Replace with function body.

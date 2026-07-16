@@ -11,6 +11,7 @@ var max_health: int = 100   # Will be set from definition
 @export var strength: int = 15
 @export var defense: int = 8
 @export var speed: int = 10
+@export var abilities: Array[Ability] = []
 
 # Combat state
 var is_alive: bool = true
