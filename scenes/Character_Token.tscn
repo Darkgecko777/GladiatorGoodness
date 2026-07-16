@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://e6n1ce4j3rmi"]
 
 [ext_resource type="Texture2D" uid="uid://d1gh1wuwteia1" path="res://art/test_gladiator_full.png" id="1_7kd1n"]
+[ext_resource type="Script" uid="uid://j8sesadsnlph" path="res://data/character_token.gd" id="1_51ych"]
 
 [node name="CharacterToken" type="Node2D" unique_id=1998546722]
+script = ExtResource("1_51ych")
 
 [node name="Base" type="Node2D" parent="." unique_id=1168954949]
 

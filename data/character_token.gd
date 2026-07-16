@@ -2,6 +2,7 @@
 class_name CharacterToken
 extends Node2D
 
+signal health_changed(new_health: int)
 @export var data: CharacterData
 @export var is_player_controlled: bool = false  # NEW: Use this instead of data.is_player
 
@@ -25,6 +26,7 @@ func _ready():
 	
 	if data:
 		data.reset_for_battle()
+		data.health_changed.connect(_forward_health_changed)
 
 func _process(delta: float):
 	if not data or not data.is_alive:
@@ -115,3 +117,10 @@ func take_damage(amount: int):
 		update_health_bar()
 		if not data.is_alive:
 			print(data.display_name + " has been defeated!")
+
+func _forward_health_changed(new_health: int):
+	health_changed.emit(new_health)
+
+
+func _on_health_changed(new_health: int) -> void:
+	pass # Replace with function body.
