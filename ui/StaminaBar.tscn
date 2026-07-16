@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dgkfa3oe8yvjh"]
+
+[ext_resource type="Texture2D" uid="uid://bg622qv3cpnba" path="res://art/Stamina_Bar_Base.png" id="1_xcfga"]
+[ext_resource type="Texture2D" uid="uid://chnorybw64dam" path="res://art/Health_Bar_Transparent.png" id="2_dpf3q"]
+[ext_resource type="Texture2D" uid="uid://dgywtvxfbmkeb" path="res://art/Stamina_Fill.png" id="3_dpf3q"]
+
+[node name="StaminaBar" type="TextureProgressBar" unique_id=1331971018]
+offset_right = 106.0
+offset_bottom = 200.0
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("1_xcfga")
+texture_over = ExtResource("2_dpf3q")
+texture_progress = ExtResource("3_dpf3q")
+texture_progress_offset = Vector2(41, 46)

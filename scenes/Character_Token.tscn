@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://e6n1ce4j3rmi"]
 
 [ext_resource type="Texture2D" uid="uid://d1gh1wuwteia1" path="res://art/test_gladiator_full.png" id="1_7kd1n"]
-[ext_resource type="PackedScene" uid="uid://dgkfa3oe8yvjh" path="res://ui/HealthBar.tscn" id="2_51ych"]
+[ext_resource type="PackedScene" uid="uid://dgkfa3oe8yvjh" path="res://ui/StaminaBar.tscn" id="2_51ych"]
 
 [node name="CharacterToken" type="Node2D" unique_id=1998546722]
 

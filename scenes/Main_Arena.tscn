@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://nmfi466wqecn" path="res://art/UI_Panel.png" id="1_ajqfm"]
 [ext_resource type="Texture2D" uid="uid://b4hi8ndtv8epn" path="res://art/Arena_Background_02.png" id="1_tjuyb"]
 [ext_resource type="Texture2D" uid="uid://3lh0wt2fgmov" path="res://art/Arena_Border.png" id="3_ajqfm"]
+[ext_resource type="PackedScene" uid="uid://u6tl3owec5t3" path="res://ui/HealthBar.tscn" id="5_tjuyb"]
+[ext_resource type="PackedScene" uid="uid://dgkfa3oe8yvjh" path="res://ui/StaminaBar.tscn" id="6_ukgit"]
 
 [node name="MainArena" type="Control" unique_id=1438345324]
 layout_mode = 3
@@ -77,6 +79,57 @@ texture = ExtResource("1_tjuyb")
 expand_mode = 1
 
 [node name="ArenaContainer" type="Node2D" parent="MainLayout/RightColumn/ArenaViewport" unique_id=631175358]
+
+[node name="PlayerBars" type="Control" parent="MainLayout/RightColumn/ArenaViewport" unique_id=834394826]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 140.0
+offset_bottom = 520.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/RightColumn/ArenaViewport/PlayerBars" unique_id=1303591136]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="HealthBar" parent="MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer" unique_id=1331971018 instance=ExtResource("5_tjuyb")]
+layout_mode = 2
+
+[node name="StaminaBar" parent="MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer" unique_id=1005319006 instance=ExtResource("5_tjuyb")]
+layout_mode = 2
+
+[node name="MonsterBars" type="Control" parent="MainLayout/RightColumn/ArenaViewport" unique_id=1219374171]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 520.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/RightColumn/ArenaViewport/MonsterBars" unique_id=936462807]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="HealthBar" parent="MainLayout/RightColumn/ArenaViewport/MonsterBars/VBoxContainer" unique_id=1197755375 instance=ExtResource("5_tjuyb")]
+layout_mode = 2
+
+[node name="StaminaBar" parent="MainLayout/RightColumn/ArenaViewport/MonsterBars/VBoxContainer" unique_id=1364707869 instance=ExtResource("6_ukgit")]
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/RightColumn" unique_id=1220414770]
 layout_mode = 2
