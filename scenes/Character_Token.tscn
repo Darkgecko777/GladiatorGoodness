@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://e6n1ce4j3rmi"]
 
 [ext_resource type="Texture2D" uid="uid://d1gh1wuwteia1" path="res://art/test_gladiator_full.png" id="1_7kd1n"]
-[ext_resource type="PackedScene" uid="uid://dgkfa3oe8yvjh" path="res://ui/StaminaBar.tscn" id="2_51ych"]
 
 [node name="CharacterToken" type="Node2D" unique_id=1998546722]
 
@@ -12,5 +11,3 @@ texture = ExtResource("1_7kd1n")
 
 [node name="UIAnchor" type="Node2D" parent="." unique_id=1573382937]
 position = Vector2(-200, -88)
-
-[node name="HealthBar" parent="UIAnchor" unique_id=1331971018 instance=ExtResource("2_51ych")]

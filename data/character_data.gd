@@ -1,6 +1,7 @@
 # data/character_data.gd
 class_name CharacterData
 extends Resource
+signal health_changed(new_health: int)
 
 @export var display_name: String = "Gladiator"
 @export var portrait: Texture2D
@@ -28,6 +29,7 @@ func _init():
 
 func take_damage(amount: int) -> void:
 	current_health = max(0, current_health - amount)
+	health_changed.emit(current_health)
 	if current_health <= 0:
 		is_alive = false
 
@@ -35,3 +37,4 @@ func reset_for_battle() -> void:
 	current_health = max_health
 	current_cooldown = base_attack_cooldown
 	is_alive = true
+	

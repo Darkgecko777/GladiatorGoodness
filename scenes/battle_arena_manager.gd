@@ -2,6 +2,10 @@
 extends Control
 
 @onready var arena_container: Node2D = $MainLayout/RightColumn/ArenaViewport/ArenaContainer
+@onready var player_health_bar: TextureProgressBar = $MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer/HealthBar
+@onready var player_stamina_bar: TextureProgressBar = $MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer/StaminaBar
+@onready var enemy_health_bar: TextureProgressBar = $MainLayout/RightColumn/ArenaViewport/MonsterBars/VBoxContainer/HealthBar
+@onready var enemy_stamina_bar: TextureProgressBar = $MainLayout/RightColumn/ArenaViewport/MonsterBars/VBoxContainer/StaminaBar
 
 @export var player_token_scene: PackedScene = preload("res://scenes/player_token.tscn")
 @export var enemy_token_scene: PackedScene = preload("res://scenes/minotaur.tscn")
