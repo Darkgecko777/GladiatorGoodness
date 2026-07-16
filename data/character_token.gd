@@ -12,14 +12,16 @@ var attack_sound_player: AudioStreamPlayer
 var abilities: Array[Ability] = []
 
 func _ready():
-	sprite = get_node_or_null("Sprite2D")
-	
-	if data:
-		if sprite and data.definition and data.definition.sprite_texture:
-			sprite.texture = data.definition.sprite_texture
-		data.reset_for_battle()
-		data.health_changed.connect(_on_health_changed)
+	sprite = get_node_or_null("Base/Sprite2D")
+
+	if sprite and data.definition and data.definition.sprite_texture:
+		sprite.texture = data.definition.sprite_texture
+	else:
+		print("  - WARNING: Could not assign sprite texture")
 		
+	data.reset_for_battle()
+	data.health_changed.connect(_on_health_changed)
+	
 	setup_sound_player()
 	initialize_abilities()
 

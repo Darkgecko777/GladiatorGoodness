@@ -20,7 +20,7 @@ func apply_damage(user: CharacterToken, target: CharacterToken, multiplier: floa
 	var damage = int(base_damage * multiplier + user.data.strength - target.data.defense * 0.5)
 	damage = max(1, damage)
 	target.take_damage(damage)
-	print("%s used %s on %s for %d damage!" % [user.data.display_name, name, target.data.display_name, damage])
+	print("%s used %s on %s for %d damage!" % [user.data.get_display_name(), name, target.data.get_display_name(), damage])
 
 func play_visuals(user: CharacterToken) -> void:
 	# Basic tilt for now - we'll improve later

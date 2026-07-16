@@ -102,7 +102,7 @@ alignment = 1
 [node name="HealthBar" parent="MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer" unique_id=1331971018 instance=ExtResource("5_tjuyb")]
 layout_mode = 2
 
-[node name="StaminaBar" parent="MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer" unique_id=1005319006 instance=ExtResource("5_tjuyb")]
+[node name="StaminaBar" parent="MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer" unique_id=2032692788 instance=ExtResource("6_ukgit")]
 layout_mode = 2
 
 [node name="MonsterBars" type="Control" parent="MainLayout/RightColumn/ArenaViewport" unique_id=1219374171]
