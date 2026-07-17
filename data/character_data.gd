@@ -1,45 +1,70 @@
 class_name CharacterData
 extends Resource
 
-# NEW: Reference to the base definition/template
+# Reference to the base template
 @export var definition: CharacterDefinition
 
-# Runtime stats (modified by gear, buffs, current state)
-@export var current_health: int = 100
-var max_health: int = 100   # Will be set from definition
+# Persistent reference (for saving progress)
+@export var persistent_id: String = ""
 
-@export var strength: int = 15
-@export var defense: int = 8
-@export var speed: int = 10
-@export var abilities: Array[Ability] = []
+# Primary Attributes (runtime copies)
+var vitality: int = 12
+var endurance: int = 12
+var strength: int = 12
+var agility: int = 12
+var precision: int = 12
+var resilience: int = 12
+var charisma: int = 10
+
+# Secondary / Derived Stats (calculated or modified)
+var max_health: int = 100
+var current_health: int = 100
+
+var max_stamina: int = 100
+var current_stamina: int = 100
+
+var adaptation: float = 3.0  # Current stance commitment time
 
 # Combat state
 var is_alive: bool = true
-var current_cooldown: float = 0.0
+var current_stance: String = "Neutral"
+var stance_timer: float = 0.0
 
-# Signal for UI / arena (clean decoupling)
+# Signals
 signal health_changed(new_health: int)
+signal stamina_changed(new_stamina: int)
+signal stance_changed(new_stance: String)
 
-func _init():
-	reset_for_battle()
-
-# NEW: Setup from definition
 func setup_from_definition(def: CharacterDefinition) -> void:
 	definition = def
-	if definition:
-		max_health = definition.base_max_health
-		strength = definition.base_strength
-		defense = definition.base_defense
-		speed = definition.base_speed
-		# Add more copying as needed (portrait, abilities later)
+	if not definition:
+		return
+	
+	# Copy primaries
+	vitality = definition.base_vitality
+	endurance = definition.base_endurance
+	strength = definition.base_strength
+	agility = definition.base_agility
+	precision = definition.base_precision
+	resilience = definition.base_resilience
+	charisma = definition.base_charisma
+	adaptation = definition.base_adaptation
+	
+	# Calculate initial secondaries
+	recalculate_secondaries()
+	reset_for_battle()
+
+func recalculate_secondaries() -> void:
+	max_health = 50 + vitality * 8
+	max_stamina = 40 + endurance * 6
+	# Add more derived formulas here as we expand
 
 func reset_for_battle() -> void:
-	if definition:
-		current_health = definition.base_max_health
-	else:
-		current_health = max_health
+	current_health = max_health
+	current_stamina = max_stamina
 	is_alive = true
-	current_cooldown = 1.5  # default, can scale by speed later
+	current_stance = "Neutral"
+	stance_timer = 0.0
 
 func take_damage(amount: int) -> void:
 	current_health = max(0, current_health - amount)
