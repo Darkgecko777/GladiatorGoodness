@@ -6,7 +6,6 @@ extends Control
 @onready var player_health_bar: TextureProgressBar = $MainLayout/RightColumn/ArenaViewport/PlayerBars/VBoxContainer/HealthBar
 @onready var enemy_health_bar: TextureProgressBar = $MainLayout/RightColumn/ArenaViewport/MonsterBars/VBoxContainer/HealthBar
 
-# Token scenes
 @export var token_scene: PackedScene = preload("res://scenes/Character_Token.tscn")
 
 @export var player_start_offset: Vector2 = Vector2(400, 375)
@@ -15,27 +14,24 @@ extends Control
 var player_token: CharacterToken
 var enemy_token: CharacterToken
 
-# Reference to the manager node (wired in scene)
 @onready var character_manager: Node = $CharacterManager
 
 func _ready():
 	setup_battle()
 
 func setup_battle():
-	# Clear any leftovers
+	# Clear old tokens
 	for child in arena_container.get_children():
 		child.queue_free()
 	
-	# Get definitions from CharacterManager (preferred) or fallbacks
+	# Use definitions for quick testing (later we'll use persistent roster)
 	var player_def = character_manager.player_definition if character_manager else preload("res://resources/test_gladiator.tres")
 	var enemy_def = character_manager.enemy_definition if character_manager else preload("res://resources/minotaur.tres")
 	
-	# Safety guard (as discussed previously)
 	if not player_def or not enemy_def:
-		push_error("BattleArenaManager: Missing player or enemy definition!")
+		push_error("BattleArenaManager: Missing definitions!")
 		return
 	
-	# Create tokens via manager (better for future roster system)
 	player_token = character_manager.create_token(player_def, true)
 	enemy_token = character_manager.create_token(enemy_def, false)
 	
@@ -43,13 +39,12 @@ func setup_battle():
 		push_error("BattleArenaManager: Failed to create tokens!")
 		return
 	
-	# Position and add to arena
 	player_token.position = player_start_offset
 	enemy_token.position = enemy_start_offset
+	
 	arena_container.add_child(player_token)
 	arena_container.add_child(enemy_token)
 	
-	# Connect health signals to bars
 	_connect_health_bars()
 
 func _connect_health_bars():
