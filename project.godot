@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Gladiator Goodness"
-run/main_scene="uid://qcm7fgh8clrd"
+run/main_scene="uid://bjtejbxfeswid"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://art/icon.svg"
+
+[autoload]
+
+SceneManager="*uid://cblmvepfwn7do"
 
 [display]
 

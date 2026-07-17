@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cblmvepfwn7do"]
+
+[ext_resource type="Script" uid="uid://dykxuth45qg6b" path="res://data/scene_manager.gd" id="1_jng0e"]
+[ext_resource type="PackedScene" uid="uid://bjtejbxfeswid" path="res://scenes/title_screen.tscn" id="2_j2b63"]
+[ext_resource type="PackedScene" uid="uid://qcm7fgh8clrd" path="res://scenes/Main_Arena.tscn" id="3_l886e"]
+[ext_resource type="PackedScene" uid="uid://c2e6uufejd2k8" path="res://scenes/Guild_Hub.tscn" id="4_0f2r0"]
+
+[node name="SceneManager" type="Node" unique_id=1187782993]
+script = ExtResource("1_jng0e")
+title_screen = ExtResource("2_j2b63")
+main_arena_scene = ExtResource("3_l886e")
+guild_hub_scene = ExtResource("4_0f2r0")
