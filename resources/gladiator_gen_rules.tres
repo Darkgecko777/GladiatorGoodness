@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GladiatorGeneratorRules" format=3 uid="uid://cnr7h18q2m3co"]
+
+[ext_resource type="Script" uid="uid://dpgs4e0ipt6hb" path="res://data/gladiator_generator_rules.gd" id="1_eo3nd"]
+
+[resource]
+script = ExtResource("1_eo3nd")
+metadata/_custom_type_script = "uid://dpgs4e0ipt6hb"

@@ -1,3 +1,4 @@
+class_name GladiatorGeneratorRules
 extends Resource
 
 func create_name() -> String:
