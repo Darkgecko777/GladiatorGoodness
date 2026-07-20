@@ -20,41 +20,41 @@ grow_vertical = 2
 layout_mode = 2
 current_tab = 0
 
-[node name="Roster" type="Panel" parent="MarginContainer/TabContainer" unique_id=800072561]
+[node name="Roster" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=1385506336]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Market" type="Panel" parent="MarginContainer/TabContainer" unique_id=1834454811]
+[node name="Market" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=1903913121]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Calendar" type="Panel" parent="MarginContainer/TabContainer" unique_id=1116859917]
+[node name="Calendar" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=532164316]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Armory" type="Panel" parent="MarginContainer/TabContainer" unique_id=1081675838]
+[node name="Armory" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=2131697420]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Training" type="Panel" parent="MarginContainer/TabContainer" unique_id=653366035]
+[node name="Training" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=1195106304]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
-[node name="Monsters" type="Panel" parent="MarginContainer/TabContainer" unique_id=811580169]
+[node name="Monsters" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=1375445931]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 5
 
-[node name="Forge" type="Panel" parent="MarginContainer/TabContainer" unique_id=795696975]
+[node name="Forge" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=1607885326]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 6
 
-[node name="Guild" type="Panel" parent="MarginContainer/TabContainer" unique_id=1634580886]
+[node name="Guild" type="MarginContainer" parent="MarginContainer/TabContainer" unique_id=1812761778]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 7
