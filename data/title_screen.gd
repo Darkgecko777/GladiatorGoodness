@@ -1,7 +1,7 @@
 extends Control
 
 func _on_play_button_pressed():
-	SceneManager.go_to_arena()
+	SceneManager.go_to_guild_hub()
 
 func _on_guild_hub_button_pressed():
 	SceneManager.go_to_guild_hub()

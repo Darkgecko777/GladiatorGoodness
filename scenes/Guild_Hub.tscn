@@ -1,3 +1,60 @@
 [gd_scene format=3 uid="uid://c2e6uufejd2k8"]
 
-[node name="GuildHub" type="Node" unique_id=617544810]
+[node name="GuildHub" type="Control" unique_id=720721321]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1450690079]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=174101308]
+layout_mode = 2
+current_tab = 0
+
+[node name="Roster" type="Panel" parent="MarginContainer/TabContainer" unique_id=800072561]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Market" type="Panel" parent="MarginContainer/TabContainer" unique_id=1834454811]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Calendar" type="Panel" parent="MarginContainer/TabContainer" unique_id=1116859917]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Armory" type="Panel" parent="MarginContainer/TabContainer" unique_id=1081675838]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Training" type="Panel" parent="MarginContainer/TabContainer" unique_id=653366035]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="Monsters" type="Panel" parent="MarginContainer/TabContainer" unique_id=811580169]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="Forge" type="Panel" parent="MarginContainer/TabContainer" unique_id=795696975]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 6
+
+[node name="Guild" type="Panel" parent="MarginContainer/TabContainer" unique_id=1634580886]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 7
