@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qcm7fgh8clrd"]
 
-[ext_resource type="Script" uid="uid://b2sa3sb0kyr5t" path="res://scenes/battle_arena_manager.gd" id="1_4bavq"]
+[ext_resource type="Script" uid="uid://b2sa3sb0kyr5t" path="res://data/battle_arena_manager.gd" id="1_4bavq"]
 [ext_resource type="Texture2D" uid="uid://nmfi466wqecn" path="res://art/UI_Panel.png" id="1_ajqfm"]
 [ext_resource type="Texture2D" uid="uid://b4hi8ndtv8epn" path="res://art/Arena_Background_02.png" id="1_tjuyb"]
 [ext_resource type="Texture2D" uid="uid://3lh0wt2fgmov" path="res://art/Arena_Border.png" id="3_ajqfm"]

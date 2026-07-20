@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://c2e6uufejd2k8"]
 
+[ext_resource type="Script" uid="uid://3asoubflbh3f" path="res://data/gladiator_generator.gd" id="1_w6ah0"]
+
 [node name="GuildHub" type="Control" unique_id=720721321]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1220008405]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,3 +68,6 @@ metadata/_tab_index = 6
 visible = false
 layout_mode = 2
 metadata/_tab_index = 7
+
+[node name="GladiatorGenerator" type="Node" parent="." unique_id=285757270]
+script = ExtResource("1_w6ah0")
