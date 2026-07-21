@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Gladiator Goodness"
+config/name="Legend of Hippodrome"
 run/main_scene="uid://bjtejbxfeswid"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://art/icon.svg"
