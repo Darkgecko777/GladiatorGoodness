@@ -7,8 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://u6tl3owec5t3" path="res://ui/HealthBar.tscn" id="5_tjuyb"]
 [ext_resource type="PackedScene" uid="uid://dgkfa3oe8yvjh" path="res://ui/StaminaBar.tscn" id="6_ukgit"]
 [ext_resource type="Script" uid="uid://tix0ak5aufrr" path="res://data/character_manager.gd" id="7_b8bot"]
-[ext_resource type="Resource" uid="uid://v1u85vtvndla" path="res://resources/test_gladiator.tres" id="8_221dn"]
-[ext_resource type="Resource" uid="uid://b7mpngaqunoq5" path="res://resources/minotaur.tres" id="9_dtkv8"]
+
+[sub_resource type="Resource" id="Resource_ukgit"]
+metadata/__load_path__ = "res://resources/test_gladiator.tres"
+
+[sub_resource type="Resource" id="Resource_n3nex"]
+metadata/__load_path__ = "res://resources/minotaur.tres"
 
 [node name="MainArena" type="Control" unique_id=1438345324]
 layout_mode = 3
@@ -179,5 +183,5 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_b8bot")
-player_definition = ExtResource("8_221dn")
-enemy_definition = ExtResource("9_dtkv8")
+player_definition = SubResource("Resource_ukgit")
+enemy_definition = SubResource("Resource_n3nex")

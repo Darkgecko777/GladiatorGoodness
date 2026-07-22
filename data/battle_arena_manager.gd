@@ -24,16 +24,9 @@ func setup_battle():
 	for child in arena_container.get_children():
 		child.queue_free()
 	
-	# Use definitions for quick testing (later we'll use persistent roster)
-	var player_def = character_manager.player_definition if character_manager else preload("res://resources/test_gladiator.tres")
-	var enemy_def = character_manager.enemy_definition if character_manager else preload("res://resources/minotaur.tres")
 	
-	if not player_def or not enemy_def:
-		push_error("BattleArenaManager: Missing definitions!")
-		return
-	
-	player_token = character_manager.create_token(player_def, true)
-	enemy_token = character_manager.create_token(enemy_def, false)
+	#player_token = character_manager.create_token_from_template(player_def, true)
+	#enemy_token = character_manager.create_token(enemy_def, false)
 	
 	if not player_token or not enemy_token:
 		push_error("BattleArenaManager: Failed to create tokens!")

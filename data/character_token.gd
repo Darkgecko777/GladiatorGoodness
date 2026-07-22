@@ -3,7 +3,7 @@ extends Node2D
 
 signal health_changed(new_health: int)
 
-@export var data: CharacterData
+@export var data: CharacterTemplate
 @export var is_player_controlled: bool = false
 
 var sprite: Sprite2D

@@ -37,7 +37,7 @@ These are used in actual calculations and modified by gear, essences, stances, p
 - Status Resistance (Resilience)
 - Intimidation Resistance (Charisma)
 - Essence Potency (Vitality + Precision + **Charisma** of fallen gladiator)
-- Adaptation Rate (independent value for stance fluidity)
+- Cunning (independent value for stance fluidity)
 
 **Non-Combat / Guild Secondaries:** (deferred)
 - Training recovery, forging, capture success, recruitment, morale, loot quality, etc.
@@ -80,7 +80,7 @@ Fully automated. AI selects stances/abilities based on personality, stats, situa
    Update hype meter. Apply personality-dependent buffs/debuffs.
 
 10. **Cleanup / Regen**  
-    Stamina regen, cooldowns (Agility), death → essence harvest (Charisma-scaled).
+	Stamina regen, cooldowns (Agility), death → essence harvest (Charisma-scaled).
 
 ---
 

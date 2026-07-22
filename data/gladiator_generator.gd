@@ -2,8 +2,8 @@ extends Node
 
 @export var rules: GladiatorGeneratorRules
 
-func generate_gladiator() -> CharacterData:
-	var definition: CharacterDefinition = CharacterDefinition.new()
+func generate_gladiator() -> CharacterTemplate:
+	var definition: CharacterTemplate = CharacterTemplate.new()
 	
 	definition.display_name = rules.create_name()
 	definition.base_strength = rules.create_stat()
