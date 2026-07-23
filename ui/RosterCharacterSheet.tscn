@@ -1,0 +1,677 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8rostercharsheet01"]
+
+[ext_resource type="Script" path="res://ui/roster_character_sheet.gd" id="1_script"]
+
+[node name="RosterCharacterSheet" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="MainHBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="RosterSidebar" type="PanelContainer" parent="MainHBox"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="SidebarMargin" type="MarginContainer" parent="MainHBox/RosterSidebar"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 12
+
+[node name="SidebarVBox" type="VBoxContainer" parent="MainHBox/RosterSidebar/SidebarMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RosterTitle" type="Label" parent="MainHBox/RosterSidebar/SidebarMargin/SidebarVBox"]
+layout_mode = 2
+text = "ACTIVE ROSTER"
+horizontal_alignment = 1
+
+[node name="RosterScroll" type="ScrollContainer" parent="MainHBox/RosterSidebar/SidebarMargin/SidebarVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RosterList" type="VBoxContainer" parent="MainHBox/RosterSidebar/SidebarMargin/SidebarVBox/RosterScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="SheetPanel" type="PanelContainer" parent="MainHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SheetMargin" type="MarginContainer" parent="MainHBox/SheetPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="SheetRoot" type="Control" parent="MainHBox/SheetPanel/SheetMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EmptyState" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="EmptyIcon" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/EmptyState"]
+layout_mode = 2
+text = "⚔️"
+horizontal_alignment = 1
+
+[node name="EmptyTitle" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/EmptyState"]
+layout_mode = 2
+text = "No Gladiators Yet"
+horizontal_alignment = 1
+
+[node name="EmptySubtitle" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/EmptyState"]
+layout_mode = 2
+text = "Recruit or generate characters to fill the roster.\nThis sheet will display their full stats and abilities."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SheetContent" type="ScrollContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContentVBox" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+
+[node name="Header" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PortraitPanel" type="PanelContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header"]
+custom_minimum_size = Vector2(140, 180)
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/PortraitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IdentityVBox" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="NameLabel" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Character Name"
+
+[node name="SpeciesLabel" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Species / Class"
+
+[node name="PersonalityRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CombatPersonality" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/PersonalityRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Combat: —"
+
+[node name="NoncombatPersonality" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/PersonalityRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Non-Combat: —"
+
+[node name="AliveBadge" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Alive"
+
+[node name="VitalBars" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HealthRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars/HealthRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Health"
+
+[node name="HealthBar" type="ProgressBar" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars/HealthRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 18)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="HealthValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars/HealthRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "0 / 0"
+horizontal_alignment = 2
+
+[node name="StaminaRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars"]
+layout_mode = 2
+
+[node name="StaminaLabel" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars/StaminaRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Stamina"
+
+[node name="StaminaBar" type="ProgressBar" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars/StaminaRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 18)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="StaminaValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/Header/IdentityVBox/VitalBars/StaminaRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "0 / 0"
+horizontal_alignment = 2
+
+[node name="StatsGrid" type="GridContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox"]
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="PrimaryBlock" type="PanelContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PrimaryVBox" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PrimaryTitle" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+text = "PRIMARY ATTRIBUTES"
+
+[node name="VitalityRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+tooltip_text = "Vitality — Root attribute for health & sustain.\nInfluences: Max Health, Healing Rate, Essence Quality.\nFormula: Max Health ≈ base_vitality × scale + gear + essence"
+
+[node name="VitalityName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/VitalityRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vitality"
+
+[node name="VitalityValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/VitalityRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="EnduranceRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+tooltip_text = "Endurance — Stamina pool and recovery.\nInfluences: Max Stamina, Stamina Regen, Fatigue Resistance.\nFormula: Max Stamina ≈ base_endurance × scale + gear"
+
+[node name="EnduranceName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/EnduranceRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Endurance"
+
+[node name="EnduranceValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/EnduranceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="StrengthRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+tooltip_text = "Strength — Raw power.\nInfluences: Base Damage, Ability Power, Forging, Capture.\nFormula: Base Damage ≈ base_strength × scale + weapon"
+
+[node name="StrengthName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/StrengthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Strength"
+
+[node name="StrengthValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/StrengthRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="AgilityRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+tooltip_text = "Agility — Speed and evasion.\nInfluences: Attack Speed, Initiative, Dodge Chance.\nFormula: Dodge Chance ≈ base_agility × scale + stance"
+
+[node name="AgilityName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/AgilityRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Agility"
+
+[node name="AgilityValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/AgilityRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="PrecisionRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+tooltip_text = "Precision — Accuracy and critical hits.\nInfluences: Hit Chance, Crit Chance, Essence/Loot Quality.\nFormula: Crit Chance ≈ base_precision × scale + gear"
+
+[node name="PrecisionName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/PrecisionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Precision"
+
+[node name="PrecisionValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/PrecisionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="ResilienceRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+tooltip_text = "Resilience — Toughness vs criticals and status.\nInfluences: Secondary Defense vs Crits, Status Resistance.\nFormula: Crit Defense ≈ base_resilience × scale"
+
+[node name="ResilienceName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/ResilienceRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resilience"
+
+[node name="ResilienceValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/ResilienceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="CharismaRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox"]
+layout_mode = 2
+tooltip_text = "Charisma — Presence and influence.\nInfluences: Crowd Hype, Stance Spectacle, Recruitment, Intimidation Resistance.\nFormula: Crowd Influence ≈ base_charisma + personality"
+
+[node name="CharismaName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/CharismaRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Charisma"
+
+[node name="CharismaValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/PrimaryBlock/PrimaryVBox/CharismaRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="DerivedBlock" type="PanelContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DerivedVBox" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="DerivedTitle" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+text = "DERIVED COMBAT STATS"
+
+[node name="MaxHealthRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Max Health\nFormula: base_max_health (from Vitality) + gear + essence bonuses"
+
+[node name="MaxHealthName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/MaxHealthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Max Health"
+
+[node name="MaxHealthValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/MaxHealthRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="MaxStaminaRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Max Stamina\nFormula: base_max_stamina (from Endurance) + gear"
+
+[node name="MaxStaminaName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/MaxStaminaRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Max Stamina"
+
+[node name="MaxStaminaValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/MaxStaminaRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="StaminaRegenRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Stamina Regen\nFormula: base_stamina_regen (Endurance) × modifiers"
+
+[node name="StaminaRegenName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/StaminaRegenRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stamina Regen"
+
+[node name="StaminaRegenValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/StaminaRegenRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="BaseDamageRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Base Damage\nFormula: base_damage (from Strength) + weapon + stance"
+
+[node name="BaseDamageName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/BaseDamageRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Base Damage"
+
+[node name="BaseDamageValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/BaseDamageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="AttackSpeedRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Attack Speed\nFormula: base_attack_speed (Agility) + stance modifiers"
+
+[node name="AttackSpeedName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/AttackSpeedRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack Speed"
+
+[node name="AttackSpeedValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/AttackSpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="InitiativeRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Initiative — Turn order priority.\nFormula: base_initiative (Agility)"
+
+[node name="InitiativeName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/InitiativeRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Initiative"
+
+[node name="InitiativeValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/InitiativeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="DodgeChanceRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Dodge Chance — Successful dodges cost stamina.\nFormula: base_dodge_chance (Agility) + stance"
+
+[node name="DodgeChanceName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/DodgeChanceRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dodge Chance"
+
+[node name="DodgeChanceValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/DodgeChanceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="CritChanceRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Crit Chance\nFormula: base_crit_chance (Precision) + gear"
+
+[node name="CritChanceName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/CritChanceRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crit Chance"
+
+[node name="CritChanceValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/CritChanceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="CritMultiplierRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Crit Multiplier\nFormula: base_crit_multiplier (Resilience + Precision/Strength)"
+
+[node name="CritMultiplierName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/CritMultiplierRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crit Multiplier"
+
+[node name="CritMultiplierValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/CritMultiplierRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="AccuracyRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox"]
+layout_mode = 2
+tooltip_text = "Accuracy / Hit Chance\nFormula: base_accuracy (Precision) vs target Agility"
+
+[node name="AccuracyName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/AccuracyRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Accuracy"
+
+[node name="AccuracyValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/AccuracyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="DefenseBlock" type="PanelContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DefenseVBox" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="DefenseTitle" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox"]
+layout_mode = 2
+text = "DEFENSE & RESISTANCE"
+
+[node name="PrimaryDRRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox"]
+layout_mode = 2
+tooltip_text = "Primary Damage Reduction — Gear-influenced, diminishing returns. Never 100%.\nFormula: base_primary_damage_reduction (gear only)"
+
+[node name="PrimaryDRName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/PrimaryDRRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Primary Damage Reduction"
+
+[node name="PrimaryDRValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/PrimaryDRRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="SecondaryCritDefRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox"]
+layout_mode = 2
+tooltip_text = "Secondary Defense vs Crits — Applied only to the critical portion of damage.\nFormula: base_secondary_defense_vs_crits (from Resilience)"
+
+[node name="SecondaryCritDefName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/SecondaryCritDefRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Secondary Defense vs Crits"
+
+[node name="SecondaryCritDefValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/SecondaryCritDefRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="StatusResRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox"]
+layout_mode = 2
+tooltip_text = "Status Resistance — Poison, confusion, debuffs, etc.\nFormula: base_status_resistance (Resilience)"
+
+[node name="StatusResName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/StatusResRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Status Resistance"
+
+[node name="StatusResValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/StatusResRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="IntimidationResRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox"]
+layout_mode = 2
+tooltip_text = "Intimidation Resistance\nFormula: base_intimidation_resistance (Charisma + Resilience)"
+
+[node name="IntimidationResName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/IntimidationResRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Intimidation Resistance"
+
+[node name="IntimidationResValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/IntimidationResRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="MetaBlock" type="PanelContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MetaVBox" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="MetaTitle" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox"]
+layout_mode = 2
+text = "STANCE · CROWD · META"
+
+[node name="CunningRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox"]
+layout_mode = 2
+tooltip_text = "Cunning — Stance commitment duration.\nHigher = stays in a chosen stance longer before re-evaluating.\nFormula: base_cunning (independent)"
+
+[node name="CunningName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CunningRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cunning"
+
+[node name="CunningValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CunningRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="CunningRateRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox"]
+layout_mode = 2
+tooltip_text = "Cunning Rate — Fluidity of stance changes.\nFormula: base_cunning_rate"
+
+[node name="CunningRateName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CunningRateRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cunning Rate"
+
+[node name="CunningRateValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CunningRateRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="StanceAffinityRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox"]
+layout_mode = 2
+tooltip_text = "Stance Affinity — Weighting for preferred stances.\nModulated by personality + Charisma.\nFormula: base_stance_affinity"
+
+[node name="StanceAffinityName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/StanceAffinityRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stance Affinity"
+
+[node name="StanceAffinityValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/StanceAffinityRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="CrowdInfluenceRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox"]
+layout_mode = 2
+tooltip_text = "Crowd Influence / Hype Generation\nHow strongly this fighter generates crowd excitement from big moments.\nFormula: base_crowd_influence (Charisma + personality)"
+
+[node name="CrowdInfluenceName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CrowdInfluenceRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crowd Influence"
+
+[node name="CrowdInfluenceValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CrowdInfluenceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="EssencePotencyRow" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox"]
+layout_mode = 2
+tooltip_text = "Essence Potency — Quality of essence harvested on death.\nUsed when forging weapons from fallen gladiators.\nFormula: base_essence_potency (Vitality + Precision + Charisma of fallen)"
+
+[node name="EssencePotencyName" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/EssencePotencyRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Essence Potency"
+
+[node name="EssencePotencyValue" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/EssencePotencyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "—"
+horizontal_alignment = 2
+
+[node name="AbilitiesSection" type="PanelContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox"]
+layout_mode = 2
+
+[node name="AbilitiesVBox" type="VBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/AbilitiesSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AbilitiesTitle" type="Label" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/AbilitiesSection/AbilitiesVBox"]
+layout_mode = 2
+text = "COMBAT ABILITIES"
+
+[node name="AbilityList" type="HBoxContainer" parent="MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/AbilitiesSection/AbilitiesVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
