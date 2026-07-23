@@ -31,13 +31,13 @@ extends Control
 @onready var resilience_value: Label = %ResilienceValue
 @onready var charisma_value: Label = %CharismaValue
 
-# Derived
+# Derived (some unique names still reflect older labels; values are remapped)
 @onready var max_health_value: Label = %MaxHealthValue
 @onready var max_stamina_value: Label = %MaxStaminaValue
 @onready var stamina_regen_value: Label = %StaminaRegenValue
 @onready var base_damage_value: Label = %BaseDamageValue
 @onready var attack_speed_value: Label = %AttackSpeedValue
-@onready var initiative_value: Label = %InitiativeValue
+@onready var ability_power_value: Label = %InitiativeValue  # remapped slot
 @onready var dodge_chance_value: Label = %DodgeChanceValue
 @onready var crit_chance_value: Label = %CritChanceValue
 @onready var crit_multiplier_value: Label = %CritMultiplierValue
@@ -45,15 +45,15 @@ extends Control
 
 # Defense
 @onready var primary_dr_value: Label = %PrimaryDRValue
-@onready var secondary_crit_def_value: Label = %SecondaryCritDefValue
+@onready var crit_defense_value: Label = %SecondaryCritDefValue
 @onready var status_res_value: Label = %StatusResValue
 @onready var intimidation_res_value: Label = %IntimidationResValue
 
-# Stance / Crowd / Meta
+# Meta
 @onready var cunning_value: Label = %CunningValue
-@onready var cunning_rate_value: Label = %CunningRateValue
-@onready var stance_affinity_value: Label = %StanceAffinityValue
-@onready var crowd_influence_value: Label = %CrowdInfluenceValue
+@onready var injury_recovery_value: Label = %CunningRateValue  # remapped slot
+@onready var fatigue_resistance_value: Label = %StanceAffinityValue  # remapped slot
+@onready var crowd_hype_value: Label = %CrowdInfluenceValue
 @onready var essence_potency_value: Label = %EssencePotencyValue
 
 # Abilities
@@ -64,7 +64,42 @@ var roster: Array[CharacterTemplate] = []
 
 
 func _ready() -> void:
+	_relabel_static_ui()
 	_show_empty_state()
+
+
+func _relabel_static_ui() -> void:
+	# Keep unique_name paths stable; only change visible text on name labels.
+	_set_label_text_by_path(
+		"MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DerivedBlock/DerivedVBox/InitiativeRow/InitiativeName",
+		"Ability Power"
+	)
+	_set_label_text_by_path(
+		"MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/DefenseBlock/DefenseVBox/SecondaryCritDefRow/SecondaryCritDefName",
+		"Crit Defense Factor"
+	)
+	_set_label_text_by_path(
+		"MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/MetaTitle",
+		"CUNNING · CROWD · META"
+	)
+	_set_label_text_by_path(
+		"MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CunningRateRow/CunningRateName",
+		"Injury Recovery"
+	)
+	_set_label_text_by_path(
+		"MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/StanceAffinityRow/StanceAffinityName",
+		"Fatigue Resistance"
+	)
+	_set_label_text_by_path(
+		"MainHBox/SheetPanel/SheetMargin/SheetRoot/SheetContent/ContentVBox/StatsGrid/MetaBlock/MetaVBox/CrowdInfluenceRow/CrowdInfluenceName",
+		"Crowd Hype Inc."
+	)
+
+
+func _set_label_text_by_path(path: String, text: String) -> void:
+	var node := get_node_or_null(path)
+	if node is Label:
+		(node as Label).text = text
 
 
 func set_roster(new_roster: Array[CharacterTemplate]) -> void:
@@ -101,8 +136,7 @@ func _rebuild_roster_list() -> void:
 		child.queue_free()
 
 	for template in roster:
-		var card := _create_roster_card(template)
-		roster_list.add_child(card)
+		roster_list.add_child(_create_roster_card(template))
 
 	var empty_slots := maxi(0, 5 - roster.size())
 	for i in empty_slots:
@@ -112,7 +146,10 @@ func _rebuild_roster_list() -> void:
 func _create_roster_card(template: CharacterTemplate) -> Button:
 	var btn := Button.new()
 	btn.custom_minimum_size = Vector2(0, 64)
-	btn.text = template.display_name if template.display_name != "" else "Unnamed"
+	var label := template.display_name if template.display_name != "" else "Unnamed"
+	if template.character_id != "":
+		label += "  [%s]" % template.character_id
+	btn.text = label
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.pressed.connect(select_character.bind(template))
 	if template == current_template:
@@ -131,7 +168,10 @@ func _create_empty_slot_card() -> Button:
 
 func _populate_sheet(t: CharacterTemplate) -> void:
 	name_label.text = t.display_name if t.display_name != "" else "Unnamed Gladiator"
-	species_label.text = t.species_or_class if t.species_or_class != "" else "Unknown"
+	var species_line := t.species_or_class if t.species_or_class != "" else "Unknown"
+	if t.character_id != "":
+		species_line += "  ·  %s" % t.character_id
+	species_label.text = species_line
 	combat_personality_label.text = "Combat: %s" % (t.combat_personality if t.combat_personality != "" else "—")
 	noncombat_personality_label.text = "Non-Combat: %s" % (t.noncombat_personality if t.noncombat_personality != "" else "—")
 	alive_badge.text = "Alive" if t.is_alive else "Fallen"
@@ -156,7 +196,6 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 	stamina_bar.value = cur_sta
 	stamina_value_label.text = "%d / %d" % [cur_sta, max_sta]
 
-	# Primaries
 	_set_stat(vitality_value, t.base_vitality)
 	_set_stat(endurance_value, t.base_endurance)
 	_set_stat(strength_value, t.base_strength)
@@ -165,34 +204,28 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 	_set_stat(resilience_value, t.base_resilience)
 	_set_stat(charisma_value, t.base_charisma)
 
-	# Derived combat
 	_set_stat(max_health_value, t.base_max_health)
 	_set_stat(max_stamina_value, t.base_max_stamina)
 	_set_stat(stamina_regen_value, t.base_stamina_regen, "%.1f /s")
 	_set_stat(base_damage_value, t.base_damage)
 	_set_stat(attack_speed_value, t.base_attack_speed, "%.2f×")
-	# Initiative removed from model — show placeholder
-	_set_stat(initiative_value, "—")
+	_set_stat(ability_power_value, t.base_ability_power)
 	_set_stat(dodge_chance_value, t.base_dodge_chance, "%.1f%%")
 	_set_stat(crit_chance_value, t.base_crit_chance, "%.1f%%")
 	_set_stat(crit_multiplier_value, t.base_crit_multiplier, "%.2f×")
 	_set_stat(accuracy_value, t.base_accuracy, "%.0f%%")
 
-	# Defense
 	_set_stat(primary_dr_value, t.base_primary_damage_reduction, "%.0f%%")
-	# Crit defense is a divisor factor; show it as such
-	_set_stat(secondary_crit_def_value, t.base_crit_defense_factor, "÷%.2f")
+	_set_stat(crit_defense_value, t.base_crit_defense_factor, "÷%.2f")
 	_set_stat(status_res_value, t.base_status_resistance, "%.0f%%")
 	_set_stat(intimidation_res_value, t.base_intimidation_resistance, "%.0f%%")
 
-	# Cunning / Crowd / Meta
 	_set_stat(cunning_value, t.base_cunning, "%.1f")
-	_set_stat(cunning_rate_value, "—")  # folded into Cunning for now
-	_set_stat(stance_affinity_value, "—")  # driven by Cunning + personality
-	_set_stat(crowd_influence_value, t.base_crowd_hype_increment, "%.1f")
+	_set_stat(injury_recovery_value, t.base_injury_recovery_chance, "%.1f%%/wk")
+	_set_stat(fatigue_resistance_value, t.base_fatigue_resistance, "%.1f%%")
+	_set_stat(crowd_hype_value, t.base_crowd_hype_increment, "%.1f")
 	_set_stat(essence_potency_value, t.base_essence_potency, "%.0f")
 
-	# Abilities
 	for child in ability_list.get_children():
 		child.queue_free()
 	if t.abilities.is_empty():
@@ -210,7 +243,7 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 func _set_stat(label: Label, value: Variant, format: String = "%s") -> void:
 	if label == null:
 		return
-	if value == null or value == "—":
+	if value == null:
 		label.text = "—"
 	else:
 		label.text = format % value
