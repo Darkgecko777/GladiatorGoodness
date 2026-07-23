@@ -2,8 +2,7 @@ class_name RosterCharacterSheet
 extends Control
 
 ## Roster Character Sheet
-## Empty template that will be populated once character generation is ready.
-## Embed this scene into the Roster tab of Guild_Hub.
+## Populates from CharacterTemplate instances produced by the generator.
 
 @onready var roster_list: VBoxContainer = %RosterList
 @onready var empty_state: Control = %EmptyState
@@ -66,10 +65,8 @@ var roster: Array[CharacterTemplate] = []
 
 func _ready() -> void:
 	_show_empty_state()
-	# Future: connect to CharacterManager or guild roster signals here
 
 
-## Call this once character generation / roster loading is implemented.
 func set_roster(new_roster: Array[CharacterTemplate]) -> void:
 	roster = new_roster
 	_rebuild_roster_list()
@@ -100,7 +97,6 @@ func _show_sheet() -> void:
 
 
 func _rebuild_roster_list() -> void:
-	# Clear existing cards
 	for child in roster_list.get_children():
 		child.queue_free()
 
@@ -108,11 +104,9 @@ func _rebuild_roster_list() -> void:
 		var card := _create_roster_card(template)
 		roster_list.add_child(card)
 
-	# Always show empty slots up to a soft max of 5
 	var empty_slots := maxi(0, 5 - roster.size())
 	for i in empty_slots:
-		var empty_card := _create_empty_slot_card()
-		roster_list.add_child(empty_card)
+		roster_list.add_child(_create_empty_slot_card())
 
 
 func _create_roster_card(template: CharacterTemplate) -> Button:
@@ -121,7 +115,6 @@ func _create_roster_card(template: CharacterTemplate) -> Button:
 	btn.text = template.display_name if template.display_name != "" else "Unnamed"
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.pressed.connect(select_character.bind(template))
-	# Simple visual distinction – can be expanded later with portraits
 	if template == current_template:
 		btn.modulate = Color(1.15, 1.05, 0.85)
 	return btn
@@ -137,7 +130,6 @@ func _create_empty_slot_card() -> Button:
 
 
 func _populate_sheet(t: CharacterTemplate) -> void:
-	# Identity
 	name_label.text = t.display_name if t.display_name != "" else "Unnamed Gladiator"
 	species_label.text = t.species_or_class if t.species_or_class != "" else "Unknown"
 	combat_personality_label.text = "Combat: %s" % (t.combat_personality if t.combat_personality != "" else "—")
@@ -152,7 +144,6 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 	else:
 		portrait.texture = null
 
-	# Vitals
 	var max_hp := maxi(t.base_max_health, 1)
 	var cur_hp := clampi(t.current_health, 0, max_hp)
 	health_bar.max_value = max_hp
@@ -165,7 +156,7 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 	stamina_bar.value = cur_sta
 	stamina_value_label.text = "%d / %d" % [cur_sta, max_sta]
 
-	# Primary
+	# Primaries
 	_set_stat(vitality_value, t.base_vitality)
 	_set_stat(endurance_value, t.base_endurance)
 	_set_stat(strength_value, t.base_strength)
@@ -174,13 +165,14 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 	_set_stat(resilience_value, t.base_resilience)
 	_set_stat(charisma_value, t.base_charisma)
 
-	# Derived
+	# Derived combat
 	_set_stat(max_health_value, t.base_max_health)
 	_set_stat(max_stamina_value, t.base_max_stamina)
 	_set_stat(stamina_regen_value, t.base_stamina_regen, "%.1f /s")
 	_set_stat(base_damage_value, t.base_damage)
 	_set_stat(attack_speed_value, t.base_attack_speed, "%.2f×")
-	_set_stat(initiative_value, t.base_initiative, "%.1f")
+	# Initiative removed from model — show placeholder
+	_set_stat(initiative_value, "—")
 	_set_stat(dodge_chance_value, t.base_dodge_chance, "%.1f%%")
 	_set_stat(crit_chance_value, t.base_crit_chance, "%.1f%%")
 	_set_stat(crit_multiplier_value, t.base_crit_multiplier, "%.2f×")
@@ -188,18 +180,19 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 
 	# Defense
 	_set_stat(primary_dr_value, t.base_primary_damage_reduction, "%.0f%%")
-	_set_stat(secondary_crit_def_value, t.base_secondary_defense_vs_crits, "%.0f%%")
+	# Crit defense is a divisor factor; show it as such
+	_set_stat(secondary_crit_def_value, t.base_crit_defense_factor, "÷%.2f")
 	_set_stat(status_res_value, t.base_status_resistance, "%.0f%%")
 	_set_stat(intimidation_res_value, t.base_intimidation_resistance, "%.0f%%")
 
-	# Stance / Crowd / Meta
-	_set_stat(cunning_value, t.base_cunning, "%.2f")
-	_set_stat(cunning_rate_value, t.base_cunning_rate, "%.2f")
-	_set_stat(stance_affinity_value, t.base_stance_affinity, "%.2f")
-	_set_stat(crowd_influence_value, t.base_crowd_influence, "%.1f")
-	_set_stat(essence_potency_value, t.base_essence_potency, "%.2f")
+	# Cunning / Crowd / Meta
+	_set_stat(cunning_value, t.base_cunning, "%.1f")
+	_set_stat(cunning_rate_value, "—")  # folded into Cunning for now
+	_set_stat(stance_affinity_value, "—")  # driven by Cunning + personality
+	_set_stat(crowd_influence_value, t.base_crowd_hype_increment, "%.1f")
+	_set_stat(essence_potency_value, t.base_essence_potency, "%.0f")
 
-	# Abilities (clear + rebuild)
+	# Abilities
 	for child in ability_list.get_children():
 		child.queue_free()
 	if t.abilities.is_empty():
@@ -211,12 +204,13 @@ func _populate_sheet(t: CharacterTemplate) -> void:
 		for ability in t.abilities:
 			var card := Label.new()
 			card.text = ability.display_name if "display_name" in ability else str(ability)
-			card.add_theme_stylebox_override("normal", StyleBoxFlat.new())  # simple visual later
 			ability_list.add_child(card)
 
 
 func _set_stat(label: Label, value: Variant, format: String = "%s") -> void:
-	if value == null:
+	if label == null:
+		return
+	if value == null or value == "—":
 		label.text = "—"
 	else:
 		label.text = format % value
