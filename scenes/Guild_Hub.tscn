@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2e6uufejd2k8"]
+[gd_scene load_steps=5 format=3 uid="uid://c2e6uufejd2k8"]
 
-[ext_resource type="Script" uid="uid://3asoubflbh3f" path="res://data/gladiator_generator.gd" id="1_w6ah0"]
-[ext_resource type="PackedScene" uid="uid://b8rostercharsheet01" path="res://ui/RosterCharacterSheet.tscn" id="2_roster"]
+[ext_resource type="Script" path="res://data/guild_hub.gd" id="1_hub"]
+[ext_resource type="Script" path="res://data/gladiator_generator.gd" id="2_gen"]
+[ext_resource type="PackedScene" uid="uid://b8rostercharsheet01" path="res://ui/RosterCharacterSheet.tscn" id="3_roster"]
+[ext_resource type="Script" path="res://data/gladiator_generator_rules.gd" id="4_rules"]
+
+[sub_resource type="Resource" id="Rules_main"]
+script = ExtResource("4_rules")
+id_prefix = "GLD"
+default_species = "Human"
+default_visual_key = "placeholder_gladiator"
 
 [node name="GuildHub" type="Control"]
 layout_mode = 3
@@ -10,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hub")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -18,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.08, 0.06, 0.05, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -26,6 +36,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -35,13 +49,52 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="RosterCharacterSheet" parent="MarginContainer/TabContainer/Roster" instance=ExtResource("2_roster")]
+[node name="RosterCharacterSheet" parent="MarginContainer/TabContainer/Roster" instance=ExtResource("3_roster")]
 layout_mode = 2
 
 [node name="Market" type="MarginContainer" parent="MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="MarketPanel" type="PanelContainer" parent="MarginContainer/TabContainer/Market"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarketMargin" type="MarginContainer" parent="MarginContainer/TabContainer/Market/MarketPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="MarketVBox" type="VBoxContainer" parent="MarginContainer/TabContainer/Market/MarketPanel/MarketMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MarketTitle" type="Label" parent="MarginContainer/TabContainer/Market/MarketPanel/MarketMargin/MarketVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Market"
+
+[node name="MarketBlurb" type="Label" parent="MarginContainer/TabContainer/Market/MarketPanel/MarketMargin/MarketVBox"]
+layout_mode = 2
+text = "Recruit a random gladiator into your active roster.\nRoster is limited to 5 fighters."
+autowrap_mode = 2
+
+[node name="GenerateGladiatorButton" type="Button" parent="MarginContainer/TabContainer/Market/MarketPanel/MarketMargin/MarketVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Generate Random Gladiator"
+
+[node name="MarketStatusLabel" type="Label" parent="MarginContainer/TabContainer/Market/MarketPanel/MarketMargin/MarketVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Roster: 0/5 — Generate adds a random gladiator."
+autowrap_mode = 2
 
 [node name="Calendar" type="MarginContainer" parent="MarginContainer/TabContainer"]
 visible = false
@@ -74,4 +127,5 @@ layout_mode = 2
 metadata/_tab_index = 7
 
 [node name="GladiatorGenerator" type="Node" parent="."]
-script = ExtResource("1_w6ah0")
+script = ExtResource("2_gen")
+rules = SubResource("Rules_main")
